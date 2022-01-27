@@ -14,20 +14,15 @@ import java.util.List;
 public class SubscriptionClientImpl implements SubscriptionClient {
 
     private final static String PATH_PARAM_SUBSCRIPTION_ID = "{subscriptionId}";
-
+    private final WebClient subscriptionCoreClient;
     @Value("${services.subscription-sys-core.endpoints.create}")
     private String createPath;
-
     @Value("${services.subscription-sys-core.endpoints.retrieve-all}")
     private String retrieveAllPath;
-
     @Value("${services.subscription-sys-core.endpoints.retrieve-by-id}")
     private String retrieveByIdPath;
-
     @Value("${services.subscription-sys-core.endpoints.delete}")
     private String delete;
-
-    private final WebClient subscriptionCoreClient;
 
     public SubscriptionClientImpl(WebClient subscriptionCoreClient) {
         this.subscriptionCoreClient = subscriptionCoreClient;
