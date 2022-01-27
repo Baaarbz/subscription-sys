@@ -3,7 +3,9 @@ package dev.barbz.subscriptionsysbff.domain.service;
 import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionsResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
