@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
-public record SubscriptionCoreControllerAdvice() {
+public record SubscriptionControllerAdvice() {
 
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/subscriptions")
 @Slf4j
-public record SubscriptionsCoreController() {
+public record SubscriptionController() {
 
     @GetMapping
     public ResponseEntity<List<SubscriptionResponse>> retrieveAll() {
