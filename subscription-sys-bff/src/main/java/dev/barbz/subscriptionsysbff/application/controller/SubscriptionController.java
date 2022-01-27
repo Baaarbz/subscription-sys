@@ -1,7 +1,8 @@
 package dev.barbz.subscriptionsysbff.application.controller;
 
-import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriberRequest;
+import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionResponse;
+import dev.barbz.subscriptionsysbff.application.response.SubscriptionsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public record SubscriptionController() {
     private static final Logger LOG = LoggerFactory.getLogger(SubscriptionController.class);
 
     @GetMapping
-    public ResponseEntity<List<SubscriptionResponse>> retrieve() {
+    public ResponseEntity<SubscriptionsResponse> retrieveAll() {
         // TODO Add service call - ALL SUBSCRIPTIONS
         LOG.info("GET\t- list of subscriptions");
         return ResponseEntity.ok().build();
@@ -33,7 +34,7 @@ public record SubscriptionController() {
     }
 
     @PostMapping("register")
-    public ResponseEntity<Void> register(@RequestBody RegisterSubscriberRequest subscriber) throws URISyntaxException {
+    public ResponseEntity<Void> register(@RequestBody RegisterSubscriptionRequest subscriptionRequest) throws URISyntaxException {
         // TODO Add service call - CREATE SUBSCRIPTION
         LOG.info("POST\t- register new subscription");
         // TODO CREATE HEADER REAL ID
