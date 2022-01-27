@@ -2,16 +2,14 @@ package dev.barbz.subscriptionsysbff.application.controller;
 
 import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionResponse;
-import dev.barbz.subscriptionsysbff.application.response.SubscriptionsResponse;
 import dev.barbz.subscriptionsysbff.domain.service.SubscriptionService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/subscriptions")
@@ -19,16 +17,16 @@ import java.net.URISyntaxException;
 public record SubscriptionController(SubscriptionService subscriptionService) {
 
     @GetMapping
-    public ResponseEntity<SubscriptionsResponse> retrieveAll() {
+    public ResponseEntity<List<SubscriptionResponse>> retrieveAll() {
         log.info("GET\t- list of subscriptions");
-        SubscriptionsResponse response = subscriptionService.retrieveAll();
+        List<SubscriptionResponse> response = subscriptionService.retrieveAllSubscriptions();
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("{subscriptionId}")
     public ResponseEntity<SubscriptionResponse> retrieve(@PathVariable String subscriptionId) {
         log.info("GET\t- subscription {}", subscriptionId);
-        SubscriptionResponse response = subscriptionService.retrieve(subscriptionId);
+        SubscriptionResponse response = subscriptionService.retrieveSubscription(subscriptionId);
         return ResponseEntity.ok(response);
     }
 
@@ -44,7 +42,7 @@ public record SubscriptionController(SubscriptionService subscriptionService) {
     @DeleteMapping("{subscriptionId}/cancel")
     public ResponseEntity<Void> cancel(@PathVariable String subscriptionId) {
         log.info("DELETE\t- cancel subscription {}", subscriptionId);
-        subscriptionService.cancel(subscriptionId);
+        subscriptionService.cancelSubscription(subscriptionId);
         return ResponseEntity.ok().build();
     }
 }

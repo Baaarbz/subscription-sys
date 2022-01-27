@@ -1,1 +1,12 @@
+logging:
+  level:
+    dev.barbz: DEBUG
 
+services:
+  subscription-sys-core:
+    base-url: http://localhost:8081
+    endpoints:
+      create: /v1/subscriptions/create
+      retrieve-all: /v1/subscriptions
+      retrieve-by-id: /v1/subscriptions/{subscriptionId}
+      delete: /v1/subscriptions/{subscriptionId}/delete

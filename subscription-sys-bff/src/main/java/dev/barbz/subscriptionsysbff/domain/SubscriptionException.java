@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SubscriptionException extends RuntimeException {
+
     private String detailedMessage;
+
     public SubscriptionException(String message, String detailedMessage) {
         super(message);
         this.detailedMessage = detailedMessage;

@@ -2,15 +2,16 @@ package dev.barbz.subscriptionsysbff.domain.service;
 
 import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionResponse;
-import dev.barbz.subscriptionsysbff.application.response.SubscriptionsResponse;
+
+import java.util.List;
 
 public interface SubscriptionService {
 
     String registerSubscription(RegisterSubscriptionRequest registerSubscription);
 
-    SubscriptionsResponse retrieveAll();
+    List<SubscriptionResponse> retrieveAllSubscriptions();
 
-    SubscriptionResponse retrieve(String id);
+    SubscriptionResponse retrieveSubscription(String id);
 
-    void cancel(String id);
+    void cancelSubscription(String id);
 }
