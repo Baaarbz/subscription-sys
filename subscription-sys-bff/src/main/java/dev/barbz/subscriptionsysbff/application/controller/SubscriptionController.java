@@ -36,7 +36,6 @@ public record SubscriptionController() {
     public ResponseEntity<Void> register(@RequestBody RegisterSubscriberRequest subscriber) throws URISyntaxException {
         // TODO Add service call - CREATE SUBSCRIPTION
         LOG.info("POST\t- register new subscription");
-        LOG.info("{}", subscriber.toString());
         // TODO CREATE HEADER REAL ID
         String id = UUID.randomUUID().toString();
         // Relative resource location
