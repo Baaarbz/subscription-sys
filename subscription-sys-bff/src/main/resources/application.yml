@@ -1,10 +1,14 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
 logging:
   level:
     dev.barbz: DEBUG
 
 services:
   subscription-sys-core:
-    base-url: http://localhost:8081
+    base-url: ${env.rest.subscription-sys.base-url}
     endpoints:
       create: /v1/subscriptions/create
       retrieve-all: /v1/subscriptions

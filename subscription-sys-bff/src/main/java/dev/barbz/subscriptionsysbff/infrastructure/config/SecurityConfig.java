@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
+        // Disable auth security for all request
         web.ignoring().antMatchers("/**");
     }
 }
