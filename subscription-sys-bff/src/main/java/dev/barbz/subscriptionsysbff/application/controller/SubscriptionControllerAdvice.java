@@ -1,6 +1,7 @@
 package dev.barbz.subscriptionsysbff.application.controller;
 
 import dev.barbz.subscriptionsysbff.application.response.ErrorResponse;
+import dev.barbz.subscriptionsysbff.domain.SubscriptionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -20,5 +21,13 @@ public record SubscriptionControllerAdvice() {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(error, detailedMessage));
+    }
+
+    @ResponseBody
+    @ExceptionHandler(SubscriptionException.class)
+    public ResponseEntity<ErrorResponse> handleSubscriptionException(SubscriptionException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(e.getMessage(), e.getDetailedMessage()));
     }
 }
