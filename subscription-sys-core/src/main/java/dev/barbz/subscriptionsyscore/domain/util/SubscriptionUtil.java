@@ -20,16 +20,14 @@ public class SubscriptionUtil {
 
     public static Subscription instantiateDomainSubscription(CreateSubscriptionRequest subscriptionRequest) {
         validateFields(subscriptionRequest);
-        return new Subscription(
-                null,
-                subscriptionRequest.firstName(),
-                subscriptionRequest.lastName(),
-                subscriptionRequest.email(),
-                subscriptionRequest.gender(),
-                subscriptionRequest.birthday(),
-                subscriptionRequest.consent(),
-                subscriptionRequest.campaign()
-        );
+        return new Subscription()
+                .firstName(subscriptionRequest.firstName())
+                .lastName(subscriptionRequest.lastName())
+                .email(subscriptionRequest.email())
+                .gender(subscriptionRequest.gender())
+                .birthday(subscriptionRequest.birthday())
+                .consent(subscriptionRequest.consent())
+                .campaign(subscriptionRequest.campaign());
     }
 
     public static List<SubscriptionResponse> instantiateSubscriptionResponseList(List<Subscription> subscriptions) {

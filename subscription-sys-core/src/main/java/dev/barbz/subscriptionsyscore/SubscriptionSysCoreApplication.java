@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EnableMongoRepositories
+@EnableMongoRepositories(basePackages = "dev.barbz.subscriptionsyscore.infrastructure.repository")
 public class SubscriptionSysCoreApplication {
 
     public static void main(String[] args) {

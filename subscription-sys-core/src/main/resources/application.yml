@@ -7,11 +7,7 @@ server:
 spring:
   data:
     mongodb:
-      database: ${env.mongo.database}
-      host: ${env.mongo.host}
-      username: ${env.mongo.user}
-      password: ${env.mongo.password}
-      port: ${env.mongo.port}
+      uri: ${env.mongo.uri}
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 
