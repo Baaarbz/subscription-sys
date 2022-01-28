@@ -22,7 +22,7 @@ public class SubscriptionClientImpl implements SubscriptionClient {
     @Value("${services.subscription-sys-core.endpoints.retrieve-by-id}")
     private String retrieveByIdPath;
     @Value("${services.subscription-sys-core.endpoints.delete}")
-    private String delete;
+    private String deletePath;
 
     public SubscriptionClientImpl(WebClient subscriptionCoreClient) {
         this.subscriptionCoreClient = subscriptionCoreClient;
@@ -67,9 +67,11 @@ public class SubscriptionClientImpl implements SubscriptionClient {
 
     @Override
     public void deleteSubscription(String subscriptionId) {
+        final String path = deletePath.replace(PATH_PARAM_SUBSCRIPTION_ID, subscriptionId);
+
         subscriptionCoreClient.delete()
                 .uri(uriBuilder -> uriBuilder
-                        .path(delete)
+                        .path(path)
                         .build())
                 .retrieve()
                 .bodyToMono(Void.class)
