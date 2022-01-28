@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Document
+@Document("subscription")
 public record Subscription(@Id String id,
                            String firstName,
                            String lastName,
