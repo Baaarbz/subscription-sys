@@ -1,15 +1,15 @@
-package dev.barbz.subscriptionsyscore.domain;
+package dev.barbz.subscriptionsyscore.domain.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SubscriptionException extends RuntimeException {
+public class SubscriptionBadRequestException extends RuntimeException {
 
     private String detailedMessage;
 
-    public SubscriptionException(String message, String detailedMessage) {
+    public SubscriptionBadRequestException(String message, String detailedMessage) {
         super(message);
         this.detailedMessage = detailedMessage;
     }

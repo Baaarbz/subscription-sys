@@ -1,4 +1,4 @@
-package dev.barbz.subscriptionsyscore.domain;
+package dev.barbz.subscriptionsyscore.domain.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

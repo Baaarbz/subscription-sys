@@ -3,7 +3,7 @@ package dev.barbz.subscriptionsyscore.domain.util;
 import dev.barbz.subscriptionsyscore.application.request.CreateSubscriptionRequest;
 import dev.barbz.subscriptionsyscore.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsyscore.domain.Subscription;
-import dev.barbz.subscriptionsyscore.domain.SubscriptionException;
+import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionBadRequestException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -58,22 +58,22 @@ public class SubscriptionUtil {
         Pattern emailPattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 
         if (isNull(subscriptionRequest.campaign()) || subscriptionRequest.campaign().length() == 0) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "campaign field can not be null or empty");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "campaign field can not be null or empty");
         }
         if (isNull(subscriptionRequest.firstName()) || subscriptionRequest.firstName().length() == 0) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "firstName field can not be null or empty");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "firstName field can not be null or empty");
         }
         if (isNull(subscriptionRequest.birthday())) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "birthday field can not be null");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "birthday field can not be null");
         }
         if (isNull(subscriptionRequest.consent()) || !subscriptionRequest.consent()) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "consent field can not be null or false, we must have explicit consent to send mails");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "consent field can not be null or false, we must have explicit consent to send mails");
         }
         if (isNull(subscriptionRequest.email()) || !emailPattern.matcher(subscriptionRequest.email()).matches()) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "email field can not be null or no valid format");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "email field can not be null or no valid format");
         }
         if (isNull(subscriptionRequest.gender())) {
-            throw new SubscriptionException(NO_VALID_FIELD_EXCEPTION, "gender field can not be null");
+            throw new SubscriptionBadRequestException(NO_VALID_FIELD_EXCEPTION, "gender field can not be null");
         }
     }
 }

@@ -1,8 +1,8 @@
 package dev.barbz.subscriptionsyscore.application.controller;
 
 import dev.barbz.subscriptionsyscore.application.response.ErrorResponse;
-import dev.barbz.subscriptionsyscore.domain.SubscriptionException;
-import dev.barbz.subscriptionsyscore.domain.SubscriptionNotFoundException;
+import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionBadRequestException;
+import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -22,8 +22,8 @@ public record SubscriptionControllerAdvice() {
     }
 
     @ResponseBody
-    @ExceptionHandler(SubscriptionException.class)
-    public ResponseEntity<ErrorResponse> handleSubscriptionException(SubscriptionException e) {
+    @ExceptionHandler(SubscriptionBadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleSubscriptionBadRequestException(SubscriptionBadRequestException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(e.getMessage(), e.getDetailedMessage()));
