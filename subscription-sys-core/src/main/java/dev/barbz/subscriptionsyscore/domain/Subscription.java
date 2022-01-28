@@ -6,13 +6,12 @@ import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Document(collection = "subscription")
 @Data
-@Accessors(chain = true, fluent = true)
-public class Subscription implements Serializable {
+@Accessors(chain = true)
+public class Subscription {
     @Id
     private String id;
     private String firstName;

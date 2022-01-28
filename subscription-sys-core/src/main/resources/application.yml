@@ -21,4 +21,4 @@ logging:
 
 messaging:
   queue:
-    send-mail: send-mail
+    send-notification-mail: send-notification-mail

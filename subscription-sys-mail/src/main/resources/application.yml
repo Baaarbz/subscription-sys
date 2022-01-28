@@ -1,2 +1,19 @@
 server:
   port: 8082
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  rabbitmq:
+    port: ${env.rabbitmq.port}
+    username: ${env.rabbitmq.user}
+    password: ${env.rabbitmq.password}
+
+logging:
+  level:
+    dev.barbz: DEBUG
+
+messaging:
+  queue:
+    send-notification-mail: send-notification-mail

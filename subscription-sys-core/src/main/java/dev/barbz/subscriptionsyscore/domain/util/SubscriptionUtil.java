@@ -4,6 +4,7 @@ import dev.barbz.subscriptionsyscore.application.request.CreateSubscriptionReque
 import dev.barbz.subscriptionsyscore.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsyscore.domain.Subscription;
 import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionBadRequestException;
+import dev.barbz.subscriptionsyscore.domain.messaging.SubscriptionMessage;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -18,40 +19,49 @@ import static java.util.Objects.isNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SubscriptionUtil {
 
-    public static Subscription mapDomainSubscription(CreateSubscriptionRequest subscriptionRequest) {
+    public static Subscription mapToDomainSubscription(CreateSubscriptionRequest subscriptionRequest) {
         validateFields(subscriptionRequest);
         return new Subscription()
-                .firstName(subscriptionRequest.firstName())
-                .lastName(subscriptionRequest.lastName())
-                .email(subscriptionRequest.email())
-                .gender(subscriptionRequest.gender())
-                .birthday(subscriptionRequest.birthday())
-                .consent(subscriptionRequest.consent())
-                .campaign(subscriptionRequest.campaign());
+                .setFirstName(subscriptionRequest.firstName())
+                .setLastName(subscriptionRequest.lastName())
+                .setEmail(subscriptionRequest.email())
+                .setGender(subscriptionRequest.gender())
+                .setBirthday(subscriptionRequest.birthday())
+                .setConsent(subscriptionRequest.consent())
+                .setCampaign(subscriptionRequest.campaign());
     }
 
-    public static List<SubscriptionResponse> mapSubscriptionResponseList(List<Subscription> subscriptions) {
+    public static List<SubscriptionResponse> mapToSubscriptionResponseList(List<Subscription> subscriptions) {
         List<SubscriptionResponse> subscriptionResponseList = new ArrayList<>();
 
         for (Subscription subscription : subscriptions) {
-            SubscriptionResponse subscriptionResponse = mapSubscriptionResponse(subscription);
+            SubscriptionResponse subscriptionResponse = mapToSubscriptionResponse(subscription);
             subscriptionResponseList.add(subscriptionResponse);
         }
 
         return subscriptionResponseList;
     }
 
-    public static SubscriptionResponse mapSubscriptionResponse(Subscription subscription) {
+    public static SubscriptionResponse mapToSubscriptionResponse(Subscription subscription) {
         return new SubscriptionResponse(
-                subscription.id(),
-                subscription.firstName(),
-                subscription.lastName(),
-                subscription.email(),
-                subscription.gender(),
-                subscription.birthday(),
-                subscription.consent(),
-                subscription.campaign()
+                subscription.getId(),
+                subscription.getFirstName(),
+                subscription.getLastName(),
+                subscription.getEmail(),
+                subscription.getGender(),
+                subscription.getBirthday(),
+                subscription.getConsent(),
+                subscription.getCampaign()
         );
+    }
+
+    public static SubscriptionMessage mapToSubscriptionMessage(Subscription subscription) {
+        return new SubscriptionMessage()
+                .setFirstName(subscription.getFirstName())
+                .setLastName(subscription.getLastName())
+                .setEmail(subscription.getEmail())
+                .setGender(subscription.getGender())
+                .setCampaign(subscription.getCampaign());
     }
 
     private static void validateFields(CreateSubscriptionRequest subscriptionRequest) {

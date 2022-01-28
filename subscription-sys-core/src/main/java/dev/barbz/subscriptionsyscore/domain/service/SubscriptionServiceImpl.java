@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapDomainSubscription;
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapSubscriptionResponse;
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapSubscriptionResponseList;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToDomainSubscription;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToSubscriptionResponse;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToSubscriptionResponseList;
 
 
 @Service
@@ -22,26 +22,26 @@ public record SubscriptionServiceImpl(SubscriptionRepository subscriptionReposit
 
     @Override
     public SubscriptionResponse create(CreateSubscriptionRequest createSubscription) {
-        Subscription subscription = mapDomainSubscription(createSubscription);
+        Subscription subscription = mapToDomainSubscription(createSubscription);
         subscriptionRepository.save(subscription);
 
         // Send queue message to send mail notification
         messageQueue.sendNewSubscriptionMessage(subscription);
 
-        return mapSubscriptionResponse(subscription);
+        return mapToSubscriptionResponse(subscription);
     }
 
     @Override
     public List<SubscriptionResponse> retrieveAll() {
         List<Subscription> subscriptions = subscriptionRepository.findAll();
 
-        return mapSubscriptionResponseList(subscriptions);
+        return mapToSubscriptionResponseList(subscriptions);
     }
 
     @Override
     public SubscriptionResponse retrieveById(String id) {
         Subscription subscription = retrieveSubscription(id);
-        return mapSubscriptionResponse(subscription);
+        return mapToSubscriptionResponse(subscription);
     }
 
     @Override
