@@ -8,6 +8,10 @@ spring:
   data:
     mongodb:
       uri: ${env.mongo.uri}
+  rabbitmq:
+    port: ${env.rabbitmq.port}
+    username: ${env.rabbitmq.user}
+    password: ${env.rabbitmq.password}
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 
