@@ -3,39 +3,44 @@ package dev.barbz.subscriptionsyscore.domain.service;
 import dev.barbz.subscriptionsyscore.application.request.CreateSubscriptionRequest;
 import dev.barbz.subscriptionsyscore.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsyscore.domain.Subscription;
+import dev.barbz.subscriptionsyscore.domain.messaging.MessageQueue;
 import dev.barbz.subscriptionsyscore.domain.repository.SubscriptionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.instantiateDomainSubscription;
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.instantiateSubscriptionResponse;
-import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.instantiateSubscriptionResponseList;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapDomainSubscription;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapSubscriptionResponse;
+import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapSubscriptionResponseList;
 
 
 @Service
-public record SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository) implements SubscriptionService {
+public record SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository,
+                                      MessageQueue messageQueue) implements SubscriptionService {
 
     @Override
     public SubscriptionResponse create(CreateSubscriptionRequest createSubscription) {
-        Subscription subscription = instantiateDomainSubscription(createSubscription);
+        Subscription subscription = mapDomainSubscription(createSubscription);
         subscriptionRepository.save(subscription);
 
-        return instantiateSubscriptionResponse(subscription);
+        // Send queue message to send mail notification
+        messageQueue.sendNewSubscriptionMessage(subscription);
+
+        return mapSubscriptionResponse(subscription);
     }
 
     @Override
     public List<SubscriptionResponse> retrieveAll() {
         List<Subscription> subscriptions = subscriptionRepository.findAll();
 
-        return instantiateSubscriptionResponseList(subscriptions);
+        return mapSubscriptionResponseList(subscriptions);
     }
 
     @Override
     public SubscriptionResponse retrieveById(String id) {
         Subscription subscription = retrieveSubscription(id);
-        return instantiateSubscriptionResponse(subscription);
+        return mapSubscriptionResponse(subscription);
     }
 
     @Override

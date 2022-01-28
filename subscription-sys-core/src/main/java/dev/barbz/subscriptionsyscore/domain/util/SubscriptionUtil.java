@@ -18,7 +18,7 @@ import static java.util.Objects.isNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SubscriptionUtil {
 
-    public static Subscription instantiateDomainSubscription(CreateSubscriptionRequest subscriptionRequest) {
+    public static Subscription mapDomainSubscription(CreateSubscriptionRequest subscriptionRequest) {
         validateFields(subscriptionRequest);
         return new Subscription()
                 .firstName(subscriptionRequest.firstName())
@@ -30,18 +30,18 @@ public class SubscriptionUtil {
                 .campaign(subscriptionRequest.campaign());
     }
 
-    public static List<SubscriptionResponse> instantiateSubscriptionResponseList(List<Subscription> subscriptions) {
+    public static List<SubscriptionResponse> mapSubscriptionResponseList(List<Subscription> subscriptions) {
         List<SubscriptionResponse> subscriptionResponseList = new ArrayList<>();
 
         for (Subscription subscription : subscriptions) {
-            SubscriptionResponse subscriptionResponse = instantiateSubscriptionResponse(subscription);
+            SubscriptionResponse subscriptionResponse = mapSubscriptionResponse(subscription);
             subscriptionResponseList.add(subscriptionResponse);
         }
 
         return subscriptionResponseList;
     }
 
-    public static SubscriptionResponse instantiateSubscriptionResponse(Subscription subscription) {
+    public static SubscriptionResponse mapSubscriptionResponse(Subscription subscription) {
         return new SubscriptionResponse(
                 subscription.id(),
                 subscription.firstName(),

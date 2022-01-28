@@ -18,3 +18,8 @@ spring:
 logging:
   level:
     dev.barbz: DEBUG
+
+messaging:
+  queue:
+    send-mail: send-mail
+

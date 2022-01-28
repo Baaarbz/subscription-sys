@@ -6,32 +6,21 @@ import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-//@Document(collection = "subscription")
-//public record Subscription(@Id String id,
-//                           String firstName,
-//                           String lastName,
-//                           String email,
-//                           Gender gender,
-//                           LocalDate birthday,
-//                           Boolean consent,
-//                           String campaign) {
-//}
 @Document(collection = "subscription")
 @Data
 @Accessors(chain = true, fluent = true)
-public class Subscription {
+public class Subscription implements Serializable {
     @Id
-    String id;
-    String firstName;
-    String lastName;
-    String email;
-    Gender gender;
-    LocalDate birthday;
-    Boolean consent;
-    String campaign;
-
-
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private Gender gender;
+    private LocalDate birthday;
+    private Boolean consent;
+    private String campaign;
 }
 
