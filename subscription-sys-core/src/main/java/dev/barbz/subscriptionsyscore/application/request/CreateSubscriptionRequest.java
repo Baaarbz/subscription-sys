@@ -2,6 +2,7 @@ package dev.barbz.subscriptionsyscore.application.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.barbz.subscriptionsyscore.domain.enums.Gender;
 
 import java.time.LocalDate;
 
@@ -12,9 +13,4 @@ public record CreateSubscriptionRequest(@JsonProperty(required = true) String fi
                                         @JsonProperty(required = true) @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") LocalDate birthday,
                                         @JsonProperty(required = true) Boolean consent,
                                         @JsonProperty(required = true) String campaign) {
-    public enum Gender {
-        MALE,
-        FEMALE,
-        NA
-    }
 }
