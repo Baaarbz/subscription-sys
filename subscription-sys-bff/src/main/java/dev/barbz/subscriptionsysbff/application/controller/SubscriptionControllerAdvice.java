@@ -15,12 +15,9 @@ public record SubscriptionControllerAdvice() {
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        String error = "INVALID_BODY_REQUEST";
-        String detailedMessage = e.getMessage();
-
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse(error, detailedMessage));
+                .body(new ErrorResponse("INVALID_BODY_REQUEST", e.getMessage()));
     }
 
     @ResponseBody

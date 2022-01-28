@@ -1,6 +1,6 @@
 package dev.barbz.subscriptionsysbff.domain;
 
-import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
+import dev.barbz.subscriptionsysbff.domain.enums.Gender;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,7 @@ public record Subscription(String id,
                            String firstName,
                            String lastName,
                            String email,
-                           RegisterSubscriptionRequest.Gender gender,
+                           Gender gender,
                            LocalDate birthday,
                            Boolean consent,
                            String campaign) {
