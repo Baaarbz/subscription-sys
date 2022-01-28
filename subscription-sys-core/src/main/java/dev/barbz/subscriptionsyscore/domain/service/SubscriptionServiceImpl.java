@@ -3,6 +3,7 @@ package dev.barbz.subscriptionsyscore.domain.service;
 import dev.barbz.subscriptionsyscore.application.request.CreateSubscriptionRequest;
 import dev.barbz.subscriptionsyscore.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsyscore.domain.Subscription;
+import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionNotFoundException;
 import dev.barbz.subscriptionsyscore.domain.messaging.MessageQueue;
 import dev.barbz.subscriptionsyscore.domain.repository.SubscriptionRepository;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,6 @@ public record SubscriptionServiceImpl(SubscriptionRepository subscriptionReposit
     private Subscription retrieveSubscription(String id) {
         Optional<Subscription> optionalSubscription = subscriptionRepository.findById(id);
 
-        return optionalSubscription.orElseThrow();
+        return optionalSubscription.orElseThrow(() -> new SubscriptionNotFoundException("subscription not found with id: " + id));
     }
 }
