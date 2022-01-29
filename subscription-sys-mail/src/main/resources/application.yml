@@ -5,6 +5,9 @@ server:
       enabled: false
 
 spring:
+  data:
+    mongodb:
+      uri: ${env.mongo.uri}
   rabbitmq:
     port: ${env.rabbitmq.port}
     username: ${env.rabbitmq.user}
@@ -18,6 +21,8 @@ spring:
       mail:
         smtp:
           auth: true
+          ssl:
+            enable: ${env.mail.ssl.enable}
           starttls:
             enable: ${env.mail.starttls.enable}
 

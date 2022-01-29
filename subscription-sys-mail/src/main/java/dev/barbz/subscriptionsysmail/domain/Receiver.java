@@ -5,10 +5,10 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class Mail {
-    private Notification notification;
+public class Receiver {
     private String firstName;
     private String lastName;
     private Gender gender;
     private String email;
+    private String campaign;
 }
