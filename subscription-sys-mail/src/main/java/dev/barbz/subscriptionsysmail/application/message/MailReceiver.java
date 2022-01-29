@@ -1,15 +1,12 @@
-package dev.barbz.subscriptionsysmail.domain;
+package dev.barbz.subscriptionsysmail.application.message;
 
-import lombok.AllArgsConstructor;
+import dev.barbz.subscriptionsysmail.domain.Gender;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
-public class Subscription {
+public class MailReceiver {
     private String firstName;
     private String lastName;
     private String email;
