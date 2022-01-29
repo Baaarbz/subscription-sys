@@ -3,6 +3,7 @@ package dev.barbz.subscriptionsysbff.application.controller;
 import dev.barbz.subscriptionsysbff.application.request.RegisterSubscriptionRequest;
 import dev.barbz.subscriptionsysbff.application.response.SubscriptionResponse;
 import dev.barbz.subscriptionsysbff.domain.service.SubscriptionService;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +31,9 @@ public record SubscriptionController(SubscriptionService subscriptionService) {
     }
 
     @GetMapping("{subscriptionId}")
-    public ResponseEntity<SubscriptionResponse> retrieve(@PathVariable String subscriptionId) {
+    public ResponseEntity<SubscriptionResponse> retrieve(
+            @Parameter(description = "ID of the requested subscription", example = "61f4588813a91001bf1bf486")
+            @PathVariable String subscriptionId) {
         log.info("GET\t- subscription {}", subscriptionId);
         SubscriptionResponse response = subscriptionService.retrieveSubscription(subscriptionId);
         return ResponseEntity.ok(response);
@@ -46,7 +49,9 @@ public record SubscriptionController(SubscriptionService subscriptionService) {
     }
 
     @DeleteMapping("{subscriptionId}/cancel")
-    public ResponseEntity<Void> cancel(@PathVariable String subscriptionId) {
+    public ResponseEntity<Void> cancel(
+            @Parameter(description = "ID of the subscription to delete", example = "61f4588813a91001bf1bf486")
+            @PathVariable String subscriptionId) {
         log.info("DELETE\t- cancel subscription {}", subscriptionId);
         subscriptionService.cancelSubscription(subscriptionId);
         return ResponseEntity.ok().build();
