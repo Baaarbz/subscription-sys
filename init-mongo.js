@@ -15,6 +15,6 @@ db.notifications.insert([
     {
         "subject": "Welcome to Adidas newsletter",
         "text": "Hi {subscriber} and welcome to the Adidas newsletter",
-        "campaign": "adidas-campaing"
+        "campaign": "adidas-campaign"
     },
 ]);
