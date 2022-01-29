@@ -9,6 +9,17 @@ spring:
     port: ${env.rabbitmq.port}
     username: ${env.rabbitmq.user}
     password: ${env.rabbitmq.password}
+  mail:
+    host: ${env.mail.host}
+    port: ${env.mail.port}
+    username: ${env.mail.user}
+    password: ${env.mail.password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: ${env.mail.starttls.enable}
 
 logging:
   level:
