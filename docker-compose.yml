@@ -6,9 +6,11 @@ services:
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_DATABASE: subscription-sys
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'

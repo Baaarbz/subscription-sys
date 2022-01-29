@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Document(collection = "subscription")
+@Document(collection = "subscriptions")
 @Data
 @Accessors(chain = true)
 public class Subscription {
