@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static dev.barbz.subscriptionsysbff.domain.util.SubscriptionUtil.*;
+import static dev.barbz.subscriptionsysbff.domain.util.SubscriptionUtil.instantiateDomainSubscription;
+import static dev.barbz.subscriptionsysbff.domain.util.SubscriptionUtil.instantiateSubscriptionResponse;
+import static dev.barbz.subscriptionsysbff.domain.util.SubscriptionUtil.instantiateSubscriptionResponseList;
 
 @Service
 public record SubscriptionServiceImpl(SubscriptionClient subscriptionClient) implements SubscriptionService {

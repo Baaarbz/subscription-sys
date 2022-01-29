@@ -16,11 +16,10 @@ import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToSu
 @Component
 public class MessageQueueImpl implements MessageQueue {
 
-    @Value("${messaging.queue.send-notification-mail}")
-    private String sendNotificationMailQueue;
-
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper mapper;
+    @Value("${messaging.queue.send-notification-mail}")
+    private String sendNotificationMailQueue;
 
     public MessageQueueImpl(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
