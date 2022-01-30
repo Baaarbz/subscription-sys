@@ -11,27 +11,44 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import static dev.barbz.subscriptionsysmail.domain.util.MailConstants.MAIL_TEXT_CLIENT_TO_REPLACE;
-import static dev.barbz.subscriptionsysmail.domain.util.MailUtil.mapToReceiver;
+import static dev.barbz.subscriptionsysmail.domain.util.MailUtil.validateReceiver;
 
+/**
+ * Implementation of mail service contract.
+ */
 @Service
 public class MailServiceImpl implements MailService {
 
     private final NotificationRepository notificationRepository;
     private final JavaMailSender mailSender;
 
+    /**
+     * Mail service constructor
+     *
+     * @param notificationRepository notification repository
+     * @param mailSender             mail sender data.
+     */
     public MailServiceImpl(NotificationRepository notificationRepository, JavaMailSender mailSender) {
         this.notificationRepository = notificationRepository;
         this.mailSender = mailSender;
     }
 
+    /**
+     * Send to the user the mail with the data received from the message.
+     * This message will contain also the campaign, that will be used to retrieve the correct mail template that will
+     * be used.
+     *
+     * @param receiver mail receiver needed that to send the mail
+     */
     @Override
-    public void sendNotificationMail(MailReceiver mailReceiver) {
-        MailReceiver receiver = mapToReceiver(mailReceiver);
+    public void sendNotificationMail(MailReceiver receiver) {
+        // Validate receiver fields
+        validateReceiver(receiver);
 
         Optional<Notification> notificationOptional = notificationRepository.findByCampaign(receiver.getCampaign());
         // Check if there are a notification associated with the received campaign
         if (notificationOptional.isEmpty()) {
-            throw new MailException("There aren't notification for the campaign: " + mailReceiver.getCampaign());
+            throw new MailException("There aren't notification for the campaign: " + receiver.getCampaign());
         }
         Notification notification = notificationOptional.get();
         // Replace mail text with client name

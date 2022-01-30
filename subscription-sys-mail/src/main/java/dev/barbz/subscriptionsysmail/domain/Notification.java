@@ -5,7 +5,9 @@ import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
+/**
+ * Notification domain, this class will contain the relative info of the mail template.
+ */
 @Document(collection = "notifications")
 @Data
 @Accessors(chain = true)

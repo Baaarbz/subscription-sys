@@ -36,7 +36,7 @@ public class SubscriptionUtil {
     }
 
     /**
-     * Mapper function to obtain a list of {@link RegisterSubscriptionRequest} receiving the list of {@link Subscription}
+     * Mapper function to obtain a list of {@link SubscriptionResponse} receiving the list of {@link Subscription}
      *
      * @param subscriptions list of subscriptions.
      * @return list of subscriptions response.
@@ -53,7 +53,7 @@ public class SubscriptionUtil {
     }
 
     /**
-     * Mapper function to obtain a {@link RegisterSubscriptionRequest} object from the {@link Subscription}.
+     * Mapper function to obtain a {@link SubscriptionResponse} object from the {@link Subscription}.
      *
      * @param subscription subscription domain object
      * @return subscription response object.
