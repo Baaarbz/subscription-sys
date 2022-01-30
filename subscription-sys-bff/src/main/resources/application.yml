@@ -11,6 +11,9 @@ logging:
   level:
     dev.barbz: DEBUG
 
+springdoc:
+  show-actuator: true
+
 services:
   subscription-sys-core:
     base-url: ${env.rest.subscription-sys.base-url}
