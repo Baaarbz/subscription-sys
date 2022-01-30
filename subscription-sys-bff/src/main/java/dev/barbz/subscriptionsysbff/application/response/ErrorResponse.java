@@ -2,6 +2,9 @@ package dev.barbz.subscriptionsysbff.application.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * Response body when an error is fired.
+ */
 @Schema(description = "Error response body.")
 public record ErrorResponse(
         @Schema(description = "Short error description.", example = "INVALID_BODY_REQUEST")

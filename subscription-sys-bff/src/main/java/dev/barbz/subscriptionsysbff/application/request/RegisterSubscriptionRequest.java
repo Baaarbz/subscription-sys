@@ -7,7 +7,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
 
-
+/**
+ * Body of the request to register a new subscription in the system.
+ */
 @Schema(description = "Subscriber needed data to save in the system and send mails.")
 public record RegisterSubscriptionRequest(
         @Schema(description = "Subscriber first name.", example = "John")

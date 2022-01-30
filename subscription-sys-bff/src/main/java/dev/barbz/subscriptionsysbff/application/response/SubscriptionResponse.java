@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
 
+/**
+ * Body response when a subscription it is requested.
+ */
 @Schema(description = "Subscriber saved data in the system.")
 public record SubscriptionResponse(
         @Schema(description = "Subscription id.", example = "61f4588813a91001bf1bf486")
