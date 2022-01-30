@@ -7,7 +7,7 @@ import dev.barbz.subscriptionsyscore.domain.enums.Gender;
 import java.time.LocalDate;
 
 public record CreateSubscriptionRequest(@JsonProperty(required = true) String firstName,
-                                        @JsonProperty(required = true) String lastName,
+                                        String lastName,
                                         @JsonProperty(required = true) String email,
                                         @JsonProperty(required = true) Gender gender,
                                         @JsonProperty(required = true) @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") LocalDate birthday,

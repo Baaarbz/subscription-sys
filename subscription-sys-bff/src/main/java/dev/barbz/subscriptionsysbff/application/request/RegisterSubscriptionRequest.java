@@ -14,7 +14,6 @@ public record RegisterSubscriptionRequest(
         @JsonProperty(required = true)
         String firstName,
         @Schema(description = "Subscriber last name.", example = "Cena")
-        @JsonProperty(required = true)
         String lastName,
         @Schema(description = "Mail to send the notification.", example = "john.cena@email.com")
         @JsonProperty(required = true)
