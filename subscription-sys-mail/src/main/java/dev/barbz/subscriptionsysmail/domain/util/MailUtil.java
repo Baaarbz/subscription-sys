@@ -1,7 +1,7 @@
 package dev.barbz.subscriptionsysmail.domain.util;
 
 import dev.barbz.subscriptionsysmail.application.message.MailReceiver;
-import dev.barbz.subscriptionsysmail.domain.Receiver;
+import dev.barbz.subscriptionsysmail.domain.MailReceiver;
 import dev.barbz.subscriptionsysmail.domain.exception.MailException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,9 @@ import static java.util.Objects.isNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MailUtil {
 
-    public static Receiver mapToReceiver(MailReceiver mailReceiver) {
+    public static MailReceiver mapToReceiver(MailReceiver mailReceiver) {
         validateReceiver(mailReceiver);
-        return new Receiver()
+        return new MailReceiver()
                 .setEmail(mailReceiver.getEmail())
                 .setGender(mailReceiver.getGender())
                 .setFirstName(mailReceiver.getFirstName())

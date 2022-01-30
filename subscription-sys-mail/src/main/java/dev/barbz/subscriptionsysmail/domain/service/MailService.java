@@ -1,6 +1,6 @@
 package dev.barbz.subscriptionsysmail.domain.service;
 
-import dev.barbz.subscriptionsysmail.application.message.MailReceiver;
+import dev.barbz.subscriptionsysmail.domain.MailReceiver;
 
 public interface MailService {
 

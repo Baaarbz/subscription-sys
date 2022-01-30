@@ -1,6 +1,5 @@
-package dev.barbz.subscriptionsysmail.application.message;
+package dev.barbz.subscriptionsysmail.domain;
 
-import dev.barbz.subscriptionsysmail.domain.Gender;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -9,8 +8,7 @@ import lombok.experimental.Accessors;
 public class MailReceiver {
     private String firstName;
     private String lastName;
-    private String email;
     private Gender gender;
+    private String email;
     private String campaign;
 }
-

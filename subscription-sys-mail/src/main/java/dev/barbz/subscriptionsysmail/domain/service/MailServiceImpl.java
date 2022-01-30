@@ -1,8 +1,7 @@
 package dev.barbz.subscriptionsysmail.domain.service;
 
-import dev.barbz.subscriptionsysmail.application.message.MailReceiver;
+import dev.barbz.subscriptionsysmail.domain.MailReceiver;
 import dev.barbz.subscriptionsysmail.domain.Notification;
-import dev.barbz.subscriptionsysmail.domain.Receiver;
 import dev.barbz.subscriptionsysmail.domain.exception.MailException;
 import dev.barbz.subscriptionsysmail.domain.repository.NotificationRepository;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,12 +14,19 @@ import static dev.barbz.subscriptionsysmail.domain.util.MailConstants.MAIL_TEXT_
 import static dev.barbz.subscriptionsysmail.domain.util.MailUtil.mapToReceiver;
 
 @Service
-public record MailServiceImpl(NotificationRepository notificationRepository,
-                              JavaMailSender mailSender) implements MailService {
+public class MailServiceImpl implements MailService {
+
+    private final NotificationRepository notificationRepository;
+    private final JavaMailSender mailSender;
+
+    public MailServiceImpl(NotificationRepository notificationRepository, JavaMailSender mailSender) {
+        this.notificationRepository = notificationRepository;
+        this.mailSender = mailSender;
+    }
 
     @Override
     public void sendNotificationMail(MailReceiver mailReceiver) {
-        Receiver receiver = mapToReceiver(mailReceiver);
+        MailReceiver receiver = mapToReceiver(mailReceiver);
 
         Optional<Notification> notificationOptional = notificationRepository.findByCampaign(receiver.getCampaign());
         // Check if there are a notification associated with the received campaign
