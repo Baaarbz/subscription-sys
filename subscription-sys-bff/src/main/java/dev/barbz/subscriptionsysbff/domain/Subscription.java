@@ -4,6 +4,9 @@ import dev.barbz.subscriptionsysbff.domain.enums.Gender;
 
 import java.time.LocalDate;
 
+/**
+ * Business domain subscription
+ */
 public record Subscription(String id,
                            String firstName,
                            String lastName,
