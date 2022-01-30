@@ -10,6 +10,10 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * Web client configuration class.
+ * Define the web clients used along the application.
+ */
 @Configuration
 @Slf4j
 public class WebClientConfig {
@@ -17,6 +21,17 @@ public class WebClientConfig {
     @Value("${services.subscription-sys-core.base-url}")
     private String subscriptionCoreUrl;
 
+    /**
+     * Subscription core client configured with:
+     * <ul>
+     *     <li>Accept header: JSON</li>
+     *     <li>Content-Type header: JSON</li>
+     *     <li>Logging request and responses in DEBUG level</li>
+     * </ul>
+     *
+     * @return {@link WebClient} with the base configuration to realize different request to the
+     * subscription core service.
+     */
     @Bean
     public WebClient subscriptionCoreClient() {
         return clientConfigurer()
@@ -49,9 +64,7 @@ public class WebClientConfig {
 
     private ExchangeFilterFunction logResponse() {
         return ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
-            if (log.isDebugEnabled()) {
-                log.debug("RECEIVED: {} - {}", clientResponse.rawStatusCode(), clientResponse.statusCode().getReasonPhrase());
-            }
+            log.debug("RECEIVED: {} - {}", clientResponse.rawStatusCode(), clientResponse.statusCode().getReasonPhrase());
             return Mono.just(clientResponse);
         });
     }

@@ -17,7 +17,9 @@ import java.util.List;
 public class SubscriptionClientImpl implements SubscriptionClient {
 
     private final static String PATH_PARAM_SUBSCRIPTION_ID = "{subscriptionId}";
+
     private final WebClient subscriptionCoreClient;
+
     @Value("${services.subscription-sys-core.endpoints.create}")
     private String createPath;
     @Value("${services.subscription-sys-core.endpoints.retrieve-all}")

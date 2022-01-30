@@ -35,7 +35,18 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "v1/subscriptions", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Subscription", description = "Subscription API with the available operations.")
-public record SubscriptionController(SubscriptionService subscriptionService) {
+public class SubscriptionController {
+
+    private final SubscriptionService subscriptionService;
+
+    /**
+     * Subscription controller constructor.
+     *
+     * @param subscriptionService subscription service
+     */
+    public SubscriptionController(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
+    }
 
     /**
      * Retrieve all the subscriptions registered.

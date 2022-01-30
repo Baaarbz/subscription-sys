@@ -19,7 +19,7 @@ import static java.util.Objects.nonNull;
  */
 @Slf4j
 @ControllerAdvice
-public record SubscriptionControllerAdvice() {
+public class SubscriptionControllerAdvice {
 
     /**
      * Handle of the exception {@link HttpMessageNotReadableException} thrown when the received body in the
