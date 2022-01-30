@@ -14,10 +14,20 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import static java.util.Objects.nonNull;
 
+/**
+ * Controller advice to handle thrown exceptions by the microservice.
+ */
 @Slf4j
 @ControllerAdvice
 public record SubscriptionControllerAdvice() {
 
+    /**
+     * Handle of the exception {@link HttpMessageNotReadableException} thrown when the received body in the
+     * request is not valid.
+     *
+     * @param e http message not readable exception
+     * @return bad request with description of error.
+     */
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
@@ -26,6 +36,13 @@ public record SubscriptionControllerAdvice() {
                 .body(new ErrorResponse("INVALID_BODY_REQUEST", e.getMessage()));
     }
 
+    /**
+     * Handle of the exception {@link WebClientResponseException} thrown when the consumed microservice return an error,
+     * it can be 4XX, 5XX
+     *
+     * @param e web client response exception
+     * @return propagate the status received from the microservice and the error.
+     */
     @ResponseBody
     @ExceptionHandler(WebClientResponseException.class)
     public ResponseEntity<ErrorResponse> handleWebClientResponseException(WebClientResponseException e) {
