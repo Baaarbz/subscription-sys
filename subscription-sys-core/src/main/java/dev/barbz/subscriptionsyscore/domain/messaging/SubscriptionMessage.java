@@ -4,6 +4,9 @@ import dev.barbz.subscriptionsyscore.domain.enums.Gender;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+/**
+ * Subscription data to send the message to the queue
+ */
 @Data
 @Accessors(chain = true)
 public class SubscriptionMessage {

@@ -19,6 +19,9 @@ logging:
   level:
     dev.barbz: DEBUG
 
+springdoc:
+  show-actuator: true
+
 messaging:
   queue:
     send-notification-mail: send-notification-mail

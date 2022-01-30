@@ -53,12 +53,12 @@ public class SubscriptionController {
      *
      * @return list of subscriptions.
      */
-    @GetMapping
     @Operation(summary = "Get all subscriptions.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found subscriptions."),
             @ApiResponse(responseCode = "204", description = "There are not subscriptions.", content = @Content),
     })
+    @GetMapping
     public ResponseEntity<List<SubscriptionResponse>> retrieveAll() {
         log.info("GET\t- list of subscriptions");
         List<SubscriptionResponse> response = subscriptionService.retrieveAllSubscriptions();

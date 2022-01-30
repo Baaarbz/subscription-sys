@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
+/**
+ * Business domain subscription
+ */
 @Document(collection = "subscriptions")
 @Data
 @Accessors(chain = true)

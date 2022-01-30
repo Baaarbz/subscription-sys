@@ -11,7 +11,7 @@ public interface SubscriptionClient {
 
     /**
      * Request to register a subscription in the system.
-     web client configured to consume the subscription system core.*
+     *
      * @param subscription subscription to register.
      * @return saved subscription with the field id updated.
      */

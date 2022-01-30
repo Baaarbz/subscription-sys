@@ -15,11 +15,33 @@ import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToDo
 import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToSubscriptionResponse;
 import static dev.barbz.subscriptionsyscore.domain.util.SubscriptionUtil.mapToSubscriptionResponseList;
 
-
+/**
+ * Implementation of the subscription service contract
+ */
 @Service
-public record SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository,
-                                      MessageQueue messageQueue) implements SubscriptionService {
+public class SubscriptionServiceImpl implements SubscriptionService {
 
+    private final SubscriptionRepository subscriptionRepository;
+    private final MessageQueue messageQueue;
+
+    /**
+     * Subscription service constructor
+     *
+     * @param subscriptionRepository subscription repository
+     * @param messageQueue           message queue
+     */
+    public SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository, MessageQueue messageQueue) {
+        this.subscriptionRepository = subscriptionRepository;
+        this.messageQueue = messageQueue;
+    }
+
+    /**
+     * Register a new subscription in the system, once it is saved in the database, this function will send a message
+     * to the queue to after the saving, the mail service will send a mail to the user subscribed.
+     *
+     * @param createSubscription subscription to register
+     * @return subscription response.
+     */
     @Override
     public SubscriptionResponse create(CreateSubscriptionRequest createSubscription) {
         Subscription subscription = mapToDomainSubscription(createSubscription);
@@ -31,6 +53,11 @@ public record SubscriptionServiceImpl(SubscriptionRepository subscriptionReposit
         return mapToSubscriptionResponse(subscription);
     }
 
+    /**
+     * Retrieve all the subscriptions registered in the system.
+     *
+     * @return list of subscriptions.
+     */
     @Override
     public List<SubscriptionResponse> retrieveAll() {
         List<Subscription> subscriptions = subscriptionRepository.findAll();
@@ -38,12 +65,23 @@ public record SubscriptionServiceImpl(SubscriptionRepository subscriptionReposit
         return mapToSubscriptionResponseList(subscriptions);
     }
 
+    /**
+     * Retrieve a subscription by its id.
+     *
+     * @param id subscription requested id.
+     * @return found subscription.
+     */
     @Override
     public SubscriptionResponse retrieveById(String id) {
         Subscription subscription = retrieveSubscription(id);
         return mapToSubscriptionResponse(subscription);
     }
 
+    /**
+     * Delete a subscription from the system by its id.
+     *
+     * @param id subscription id
+     */
     @Override
     public void delete(String id) {
         Subscription subscription = retrieveSubscription(id);

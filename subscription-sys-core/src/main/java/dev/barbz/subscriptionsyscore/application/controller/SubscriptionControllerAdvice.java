@@ -6,14 +6,22 @@ import dev.barbz.subscriptionsyscore.domain.exception.SubscriptionNotFoundExcept
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
-public record SubscriptionControllerAdvice() {
+/**
+ * Controller advice to handle thrown exceptions by the microservice.
+ */
+@RestControllerAdvice
+public class SubscriptionControllerAdvice {
 
-    @ResponseBody
+    /**
+     * Handle of the exception {@link HttpMessageNotReadableException} thrown when the received body in the
+     * request is not valid.
+     *
+     * @param e http message not readable exception
+     * @return bad request with description of error.
+     */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         return ResponseEntity
@@ -21,7 +29,13 @@ public record SubscriptionControllerAdvice() {
                 .body(new ErrorResponse("INVALID_BODY_REQUEST", e.getMessage()));
     }
 
-    @ResponseBody
+    /**
+     * Handle of the exception {@link SubscriptionBadRequestException}. When it is fired the microservice will
+     * return a bad request status with information about the error.
+     *
+     * @param e subscription bad request exception
+     * @return bad request status with information about the error.
+     */
     @ExceptionHandler(SubscriptionBadRequestException.class)
     public ResponseEntity<ErrorResponse> handleSubscriptionBadRequestException(SubscriptionBadRequestException e) {
         return ResponseEntity
@@ -29,7 +43,13 @@ public record SubscriptionControllerAdvice() {
                 .body(new ErrorResponse(e.getMessage(), e.getDetailedMessage()));
     }
 
-    @ResponseBody
+    /**
+     * Handle of the exception {@link SubscriptionNotFoundException}. When it is fired the microservice will
+     * return a not found status with information about the error.
+     *
+     * @param e subscription not found exception
+     * @return not found status with information about the error.
+     */
     @ExceptionHandler(SubscriptionNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleSubscriptionNotFoundException(SubscriptionNotFoundException e) {
         return ResponseEntity
