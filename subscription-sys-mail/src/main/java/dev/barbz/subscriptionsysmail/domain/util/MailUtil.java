@@ -5,6 +5,9 @@ import dev.barbz.subscriptionsysmail.domain.exception.MailException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.regex.Pattern;
+
+import static dev.barbz.subscriptionsysmail.domain.util.MailConstants.EMAIL_PATTERN;
 import static java.util.Objects.isNull;
 
 /**
@@ -21,10 +24,12 @@ public class MailUtil {
      * @param mailReceiver mail receiver data.
      */
     public static void validateReceiver(MailReceiver mailReceiver) {
+        Pattern emailPattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+
         if (isNull(mailReceiver.getCampaign()) || mailReceiver.getCampaign().length() == 0) {
             throw new MailException("campaign can not be null or empty");
         }
-        if (isNull(mailReceiver.getEmail()) || mailReceiver.getEmail().length() == 0) {
+        if (isNull(mailReceiver.getEmail()) || !emailPattern.matcher(mailReceiver.getEmail()).matches()) {
             throw new MailException("email can not be null or empty");
         }
         if (isNull(mailReceiver.getFirstName()) || mailReceiver.getFirstName().length() == 0) {
