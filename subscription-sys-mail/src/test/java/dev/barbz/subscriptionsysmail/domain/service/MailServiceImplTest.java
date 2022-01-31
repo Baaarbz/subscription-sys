@@ -27,7 +27,7 @@ class MailServiceImplTest {
 
     private static MailReceiver mailReceiver = new MailReceiver()
             .setCampaign("test")
-            .setEmail("email")
+            .setEmail("email@email.com")
             .setFirstName("test")
             .setGender(Gender.NA)
             .setLastName("last name");
