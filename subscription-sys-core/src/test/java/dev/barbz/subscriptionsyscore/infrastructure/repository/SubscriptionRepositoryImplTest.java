@@ -22,13 +22,11 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class SubscriptionRepositoryImplTest {
 
+    static Subscription subscription;
     @SpyBean
     SubscriptionRepositoryImpl subscriptionRepository;
-
     @MockBean
     SubscriptionMongoRepository repository;
-
-    static Subscription subscription;
 
     @BeforeAll
     static void setUp() {

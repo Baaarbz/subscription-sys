@@ -25,21 +25,18 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class MailServiceImplTest {
 
-    @SpyBean
-    MailServiceImpl mailService;
-
-    @MockBean
-    NotificationRepository notificationRepository;
-
-    @MockBean
-    JavaMailSender mailSender;
-
     private static MailReceiver mailReceiver = new MailReceiver()
             .setCampaign("test")
             .setEmail("email")
             .setFirstName("test")
             .setGender(Gender.NA)
             .setLastName("last name");
+    @SpyBean
+    MailServiceImpl mailService;
+    @MockBean
+    NotificationRepository notificationRepository;
+    @MockBean
+    JavaMailSender mailSender;
 
     @Test
     void sendNotificationMail_then_OK() {

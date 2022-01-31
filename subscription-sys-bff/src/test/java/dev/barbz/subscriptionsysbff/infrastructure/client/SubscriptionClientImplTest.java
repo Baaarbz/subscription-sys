@@ -26,14 +26,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 class SubscriptionClientImplTest {
 
-    @SpyBean
-    SubscriptionClientImpl subscriptionClient;
-
-    @MockBean
-    WebClient subscriptionCoreClient;
-
     public static MockWebServer mockBackEnd;
     private static Subscription subscription;
+    @SpyBean
+    SubscriptionClientImpl subscriptionClient;
+    @MockBean
+    WebClient subscriptionCoreClient;
 
     @BeforeAll
     static void setUp() throws IOException {

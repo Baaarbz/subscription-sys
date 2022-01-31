@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -29,14 +28,12 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class SubscriptionControllerTest {
 
-    @SpyBean
-    SubscriptionController subscriptionController;
-
-    @MockBean
-    SubscriptionServiceImpl subscriptionService;
-
     static SubscriptionResponse subscriptionResponse;
     static CreateSubscriptionRequest createSubscriptionRequest;
+    @SpyBean
+    SubscriptionController subscriptionController;
+    @MockBean
+    SubscriptionServiceImpl subscriptionService;
 
     @BeforeAll
     static void setUp() {

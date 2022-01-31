@@ -27,14 +27,12 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class SubscriptionServiceImplTest {
 
-    @SpyBean
-    SubscriptionServiceImpl subscriptionService;
-
-    @MockBean
-    SubscriptionClient subscriptionClient;
-
     static RegisterSubscriptionRequest registerSubscriptionRequest;
     static Subscription subscription;
+    @SpyBean
+    SubscriptionServiceImpl subscriptionService;
+    @MockBean
+    SubscriptionClient subscriptionClient;
 
     @BeforeAll
     static void setUp() {

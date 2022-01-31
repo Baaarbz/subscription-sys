@@ -31,17 +31,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class SubscriptionServiceImplTest {
 
-    @SpyBean
-    SubscriptionServiceImpl subscriptionService;
-
-    @MockBean
-    SubscriptionRepositoryImpl subscriptionRepository;
-
-    @MockBean
-    MessageQueueImpl messageQueue;
-
     static CreateSubscriptionRequest createSubscriptionRequest;
     static Subscription subscription;
+    @SpyBean
+    SubscriptionServiceImpl subscriptionService;
+    @MockBean
+    SubscriptionRepositoryImpl subscriptionRepository;
+    @MockBean
+    MessageQueueImpl messageQueue;
 
     @BeforeAll
     static void setUp() {

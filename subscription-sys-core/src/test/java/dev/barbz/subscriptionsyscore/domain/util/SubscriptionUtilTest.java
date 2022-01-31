@@ -60,7 +60,8 @@ class SubscriptionUtilTest {
         // Fail campaign validation
         CreateSubscriptionRequest campaignNull = new CreateSubscriptionRequest("name", "lastName", "email@mail.com", Gender.NA, LocalDate.now(), true, null);
         assertThrows(SubscriptionBadRequestException.class, () -> SubscriptionUtil.mapToDomainSubscription(campaignNull));
-        CreateSubscriptionRequest campaignEmpty = new CreateSubscriptionRequest("name", "lastName", "email@mail.com", Gender.NA, LocalDate.now(), true, "");;
+        CreateSubscriptionRequest campaignEmpty = new CreateSubscriptionRequest("name", "lastName", "email@mail.com", Gender.NA, LocalDate.now(), true, "");
+        ;
         assertThrows(SubscriptionBadRequestException.class, () -> SubscriptionUtil.mapToDomainSubscription(campaignEmpty));
 
         // Fail first name validation
