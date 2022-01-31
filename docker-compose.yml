@@ -20,3 +20,33 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - ./.rabbitmq/definitions.json:/opt/definitions.json:ro
+      - ./.rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+
+  subscription-sys-bff:
+    container_name: subscription-sys-bff
+    build: ./subscription-sys-bff
+    ports:
+      - '8080:8080'
+
+  subscription-sys-core:
+    container_name: subscription-sys-core
+    build: ./subscription-sys-core
+    ports:
+      - '8081:8081'
+    restart: on-failure
+
+  subscription-sys-mail:
+    container_name: subscription-sys-mail
+    build: ./subscription-sys-mail
+    environment:
+      ENV_MAIL_HOST: smtp.gmail.com
+      ENV_MAIL_PORT: 587
+      ENV_MAIL_USER:
+      ENV_MAIL_PASSWORD:
+      ENV_MAIL_STARTTLS_ENABLE: 'true'
+      ENV_MAIL_SSL_ENABLE: 'false'
+    ports:
+      - '8082:8082'
+    restart: on-failure
