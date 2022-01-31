@@ -11,10 +11,10 @@ class ApiConfigTest {
 
     private final WebApplicationContextRunner applicationContextRunner =
             new WebApplicationContextRunner()
-                    .withConfiguration(AutoConfigurations.of(OpenAPI.class));
+                    .withConfiguration(AutoConfigurations.of(ApiConfig.class));
 
     @Test
     void apiConfig_OK() {
-        this.applicationContextRunner.run(context -> assertThat(context).getBean(ApiConfig.class).isNotNull());
+        this.applicationContextRunner.run(context -> assertThat(context).getBean(OpenAPI.class).isNotNull());
     }
 }
