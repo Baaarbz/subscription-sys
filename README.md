@@ -1,7 +1,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
+[//]: # ([![LinkedIn][linkedin-shield]][linkedin-url])
 <h1 align="center">Welcome to Subscription System 👋</h1>
 
 ## Author
@@ -115,13 +116,10 @@ This is an example of how to list things you need to use the software and how to
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+- [ ] Add Changelog
+- [ ] Add mail templates with resources
+- [ ] Simple way to add new mail templates to MongoDB
+- [ ] Multi-language mail support
 
 See the [open issues](https://github.com/Baaarbz/subscription-sys/issues) for a full list of proposed features (and
 known issues).
