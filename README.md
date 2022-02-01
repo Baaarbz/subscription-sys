@@ -150,7 +150,8 @@ Postman collection and its [environment](https://github.com/Baaarbz/subscription
 ## Roadmap
 
 - [x] Add base configuration CI/CD pipelines
-- [ ] Add Sonar configuration CI/CD pipelines
+- [x] Add Sonar configuration to pipelines
+- [ ] Configure pipeline to analyze all modules
 - [ ] Add deploy configuration CI/CD pipelines
 - [ ] Add Kubernetes integration
 - [ ] Improve Dockerfiles

@@ -70,6 +70,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       #Analyze project with SonarCloud
+      - name: Clean install
+        run: mvn clean install -f subscription-sys-core/pom.xml
       - name: Analyze with SonarCloud
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Baaarbz_subscription-sys -f subscription-sys-core/pom.xml
         env:

@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 
 @ExtendWith(SpringExtension.class)
-public class MessageQueueImplTest {
+class MessageQueueImplTest {
 
     @SpyBean
     MessageQueueImpl messageQueue;
