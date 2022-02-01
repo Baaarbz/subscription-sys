@@ -31,5 +31,9 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       #Run Tests
-      - name: Run Tests
-        run: mvn -B test
+      - name: 'CORE: Run Tests'
+        run: mvn -B test -f subscription-sys-core/pom.xml
+      - name: 'BFF: Run Tests'
+        run: mvn -B test -f subscription-sys-bff/pom.xml
+      - name: 'MAIL: Run Tests'
+        run: mvn -B test -f subscription-sys-mail/pom.xml
