@@ -27,6 +27,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#runlocal">Run local</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -77,7 +78,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Define the environment properties needed to realize the connection with the mail account.
+1. Define the environment properties in the docker-compose needed to realize the connection with the mail account.
    ```
    ENV_MAIL_HOST: smtp.gmail.com (or other smtp client)
    ENV_MAIL_PORT: 587 (relative smtp port)
@@ -101,13 +102,45 @@ This is an example of how to list things you need to use the software and how to
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Run local
+
+1. Define the environment properties needed to realize the connection with the mail account. This can be done in the
+   [application-local.properties of the mail service](https://github.com/Baaarbz/subscription-sys/blob/main/subscription-sys-mail/src/main/resources/application-local.properties)
+   adding the next lines:
+   ```
+   env.mail.host= smtp.gmail.com (or other smtp client)
+   env.mail.port= 587 (relative smtp port)
+   env.mail.user= Mail account
+   env.mail.password= Mail password
+   env.mail.starttls.enable= Start TLS - 'true/false'
+   env.mail.ssl.enable= SSL Enable - 'true/false'
+   ```
+   Or adding the environment to the IDE configuration or adding it into the system environment variables:
+   ```
+   ENV_MAIL_HOST: smtp.gmail.com (or other smtp client)
+   ENV_MAIL_PORT: 587 (relative smtp port)
+   ENV_MAIL_USER: Mail account
+   ENV_MAIL_PASSWORD: Mail password
+   ENV_MAIL_STARTTLS_ENABLE: Start TLS - 'true/false'
+   ENV_MAIL_SSL_ENABLE: SSL Enable - 'true/false'
+   ```
+    
+2. Create your configurations to run it, using the local profile!
+   ```bash
+   mvn spring-boot:run -Dspring-boot.run.profiles=local
+   ```
+3. Enjoy!
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-[Postman Collection](https://github.com/Baaarbz/subscription-sys/tree/main/.postman) - In this folder you can find 
+[Postman Collection](https://github.com/Baaarbz/subscription-sys/tree/main/.postman) - In this folder you can find the 
+Postman collection and its [environment](https://github.com/Baaarbz/subscription-sys/tree/main/.postman/environment) to test the application.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -116,10 +149,15 @@ This is an example of how to list things you need to use the software and how to
 
 ## Roadmap
 
-- [ ] Add Changelog
+- [x] Add base configuration CI/CD pipelines
+- [ ] Add Sonar configuration CI/CD pipelines
+- [ ] Add deploy configuration CI/CD pipelines
+- [ ] Add Kubernetes integration
+- [ ] Improve Dockerfiles
 - [ ] Add mail templates with resources
 - [ ] Simple way to add new mail templates to MongoDB
 - [ ] Multi-language mail support
+- [ ] Add Changelog
 
 See the [open issues](https://github.com/Baaarbz/subscription-sys/issues) for a full list of proposed features (and
 known issues).
