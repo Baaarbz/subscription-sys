@@ -15,6 +15,8 @@
     <description>Adidas Java Backend Coding Challenge - Subscription system BFF</description>
     <properties>
         <java.version>17</java.version>
+        <sonar.organization>baaarbz</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
