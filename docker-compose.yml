@@ -43,8 +43,8 @@ services:
     environment:
       ENV_MAIL_HOST: smtp.gmail.com
       ENV_MAIL_PORT: 587
-      ENV_MAIL_USER:
-      ENV_MAIL_PASSWORD:
+      ENV_MAIL_USER: adidastestchallenge@gmail.com
+      ENV_MAIL_PASSWORD: cF4VFFc9wXqPmXC
       ENV_MAIL_STARTTLS_ENABLE: 'true'
       ENV_MAIL_SSL_ENABLE: 'false'
     ports:

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static dev.barbz.subscriptionsysmail.domain.util.MailConstants.DEFAULT_MAIL;
 import static dev.barbz.subscriptionsysmail.domain.util.MailConstants.MAIL_TEXT_CLIENT_TO_REPLACE;
 import static dev.barbz.subscriptionsysmail.domain.util.MailUtil.validateReceiver;
 
@@ -48,7 +49,7 @@ public class MailServiceImpl implements MailService {
         Optional<Notification> notificationOptional = notificationRepository.findByCampaign(receiver.getCampaign());
         // Check if there are a notification associated with the received campaign
         if (notificationOptional.isEmpty()) {
-            throw new MailException("There aren't notification for the campaign: " + receiver.getCampaign());
+            notificationOptional = notificationRepository.findByCampaign(DEFAULT_MAIL);
         }
         Notification notification = notificationOptional.get();
         // Replace mail text with client name

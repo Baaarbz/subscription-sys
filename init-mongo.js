@@ -12,9 +12,14 @@ db = db.getSiblingDB('mail');
 db.createCollection('notifications');
 // Insert sample notification mail
 db.notifications.insert([
-    {
-        "subject": "Welcome to Adidas newsletter",
-        "text": "Hi {subscriber} and welcome to the Adidas newsletter",
-        "campaign": "adidas-campaign"
-    },
+  {
+    "subject": "Welcome to Adidas newsletter",
+    "text": "Hi {subscriber} and welcome to the Adidas newsletter",
+    "campaign": "adidas-campaign"
+  },
+  {
+    "subject": "Welcome!",
+    "text": "Hi {subscriber}, you have been successfully registered.",
+    "campaign": "default"
+  },
 ]);

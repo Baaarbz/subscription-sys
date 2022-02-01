@@ -3,7 +3,6 @@ package dev.barbz.subscriptionsysmail.domain.service;
 import dev.barbz.subscriptionsysmail.domain.MailReceiver;
 import dev.barbz.subscriptionsysmail.domain.Notification;
 import dev.barbz.subscriptionsysmail.domain.enums.Gender;
-import dev.barbz.subscriptionsysmail.domain.exception.MailException;
 import dev.barbz.subscriptionsysmail.domain.repository.NotificationRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +15,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
@@ -50,10 +48,19 @@ class MailServiceImplTest {
     }
 
     @Test
-    void sendNotificationMail_then_throwException() {
+    void sendNotificationMail_then_retrieveDefaultMail() {
         when(notificationRepository.findByCampaign(anyString()))
                 .thenReturn(Optional.empty());
 
-        assertThrows(MailException.class, () -> mailService.sendNotificationMail(mailReceiver));
+        when(notificationRepository.findByCampaign(anyString()))
+                .thenReturn(
+                        Optional.of(
+                                new Notification()
+                                        .setCampaign("default")
+                                        .setText("text")
+                        )
+                );
+
+        assertDoesNotThrow(() -> mailService.sendNotificationMail(mailReceiver));
     }
 }
