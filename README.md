@@ -172,7 +172,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2022 [Eduardo Barbosa Tarrío](https://github.com/Baaarbz). <br/>
-This project is [MIT](https://github.com/Baaarbz/subscription-sys/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/Baaarbz/subscription-sys/blob/main/LICENSE) licensed. <br/>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
